@@ -4,6 +4,7 @@ MUD Pi
 A simple text-based Multi-User Dungeon (MUD) game, which could be run on a 
 Raspberry Pi or other low-end server.
 
+Hosted by 0smo5is via telnet @ ec2-54-91-229-241.compute-1.amazonaws.com:1234
 
 Requirements
 ------------
