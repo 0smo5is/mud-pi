@@ -26,24 +26,38 @@ import time
 # import the MUD server class
 from mudserver import MudServer
 
-
+# My WIP attempt at adding items
+Items = {
+    "Toilet Plunger": {
+       "description": "An old Toilet Plunger.",
+       "damage": "1",
+       "attackspeed": "1",
+       "attacktype": "Melee",
+    }
+}
+       
+   
 # structure defining the rooms in the game. Try adding more rooms to the game!
 rooms = {
     "RustyWhistle": {
         "description": "You're in the Rusty Whistle, a cozy tavern warmed by an open fire.",
         "exits": {"outside": "Tavern Entrance", "washroom": "Washroom"},
+        "items": {},
     },
     "TavernEntrance": {
         "description": "You're standing outside the Rusty Whistle. It's raining.",
         "exits": {"inside": "RustyWhistle", "dark alley": "DarkAlley"},
+        "items: {},
     },
     "Washroom": {
        "description": "This is the Rusty Whistle's bathroom.",
        "exits": {"tavern": "RustyWhistle"},
+       "items": {"Plunger": "Toilet Plunger"},
     },
     "DarkAlley": {
        "description": "A dark alley leading behind the Rusty Whistle.",
-      "exits": {"tavern entrance": "TavernEntrance"},
+       "exits": {"tavern entrance": "TavernEntrance"},
+       "items": {},
     },
 }
 
@@ -75,6 +89,10 @@ while True:
         players[id] = {
             "name": None,
             "room": "Tavern",
+            "weapon": None,
+            "armor": None,
+            "gold": 0,
+           
         }
 
         # send the new player a prompt for their name
@@ -224,6 +242,17 @@ while True:
             else:
                 # send back an 'unknown exit' message
                 mud.send_message(id, "Unknown exit '{}'".format(ex))
+               
+        # equip command
+        elif command == "equip":
+            
+            # stores current weapon
+            wp = weapon[players[id]["weapon"]]
+            
+            # store the player's current room
+            rm = rooms[players[id]["room"]]
+            
+            if wp in rm["exits"]:
 
         # some other, unrecognised command
         else:
