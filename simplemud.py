@@ -42,22 +42,22 @@ rooms = {
     "RustyWhistle": {
         "description": "You're in the Rusty Whistle, a cozy tavern warmed by an open fire.",
         "exits": {"outside": "Tavern Entrance", "washroom": "Washroom"},
-        "items": {},
+        "item": {},
     },
     "TavernEntrance": {
         "description": "You're standing outside the Rusty Whistle. It's raining.",
         "exits": {"inside": "RustyWhistle", "dark alley": "DarkAlley"},
-        "items: {},
+        "item": {},
     },
     "Washroom": {
        "description": "This is the Rusty Whistle's bathroom.",
        "exits": {"tavern": "RustyWhistle"},
-       "items": {"Plunger": "Toilet Plunger"},
+       "item": {"plunger": "Toilet Plunger"},
     },
     "DarkAlley": {
        "description": "A dark alley leading behind the Rusty Whistle.",
        "exits": {"tavern entrance": "TavernEntrance"},
-       "items": {},
+       "item": {},
     },
 }
 
@@ -139,7 +139,7 @@ while True:
             # send the new player a welcome message
             mud.send_message(id, "Welcome to the game, {}. ".format(
                                                            players[id]["name"])
-                             + "Type 'help' for a list of commands. Have fun!")
+                             + "Type 'commands' for a list of commands. Have fun!")
 
             # send the new player the description of their current room
             mud.send_message(id, rooms[players[id]["room"]]["description"])
@@ -148,7 +148,7 @@ while True:
         # commands to the game!
 
         # 'help' command
-        elif command == "help":
+        elif command == "commands":
 
             # send the player back the list of possible commands
             mud.send_message(id, "Commands:")
@@ -158,6 +158,7 @@ while True:
                                  + "surroundings, e.g. 'look'")
             mud.send_message(id, "  go <exit>      - Moves through the exit "
                                  + "specified, e.g. 'go outside'")
+            mud.send_message(id, "  equip <item>   - Equips an item "
 
         # 'say' command
         elif command == "say":
@@ -246,13 +247,24 @@ while True:
         # equip command
         elif command == "equip":
             
-            # stores current weapon
-            wp = weapon[players[id]["weapon"]]
+            # stores items in room
+            it = params.lower()
             
             # store the player's current room
             rm = rooms[players[id]["room"]]
             
-            if wp in rm["exits"]:
+            if it in rm["item"]:
+               
+               players[id]["weapon"] = rm["item"][it]
+               
+               mud.send_message(id, "You have equipped '{}'".format(it))
+               
+             else:
+               mud.send_message(id, "Could not find '{}' in '{}'".format(it, players[id]["room"]))
+             
+               
+                                                
+                       
 
         # some other, unrecognised command
         else:
