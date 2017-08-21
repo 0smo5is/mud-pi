@@ -29,14 +29,22 @@ from mudserver import MudServer
 
 # structure defining the rooms in the game. Try adding more rooms to the game!
 rooms = {
-    "Tavern": {
-        "description": "You're in a cozy tavern warmed by an open fire.",
-        "exits": {"outside": "Outside"},
+    "RustyWhistle": {
+        "description": "You're in the Rusty Whistle, a cozy tavern warmed by an open fire.",
+        "exits": {"outside": "Tavern Entrance", "washroom": "Washroom"},
     },
-    "Outside": {
-        "description": "You're standing outside a tavern. It's raining.",
-        "exits": {"inside": "Tavern"},
-    }
+    "TavernEntrance": {
+        "description": "You're standing outside the Rusty Whistle. It's raining.",
+        "exits": {"inside": "RustyWhistle", "dark alley": "DarkAlley"},
+    },
+    "Washroom": {
+       "description": "This is the Rusty Whistle's bathroom.",
+       "exits": {"tavern": "RustyWhistle"},
+    },
+    "DarkAlley": {
+       "description": "A dark alley leading behind the Rusty Whistle.",
+      "exits": {"tavern entrance": "TavernEntrance"},
+    },
 }
 
 # stores the players in the game
@@ -70,7 +78,7 @@ while True:
         }
 
         # send the new player a prompt for their name
-        mud.send_message(id, "What is your name?")
+        mud.send_message(id, "Welcome to my untitled MUD!\nForked from Frimkron/mud-pi @ 0smo5is/mud-pi\nWhat is your name?")
 
     # go through any recently disconnected players
     for id in mud.get_disconnected_players():
