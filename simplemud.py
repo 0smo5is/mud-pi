@@ -95,10 +95,10 @@ while True:
         players[id] = {
             "name": None,
             "room": "Rusty Whistle",
-            "weapon": "Fist",
-            "armor": "Cloth Clothing",
-            "gold": "0",
-            "backpack": "Empty",
+            "weapon": None,
+            "armor": None,
+            "gold": None,
+            "backpack": None,
             }
 
         # send the new player a prompt for their name ('\r\n' for telnet)
@@ -268,13 +268,20 @@ while True:
                                  it, players[id]["room"]))
 
         # inventory command
-        elif command in ("inventory", "i"):
+        elif command in ("inventory", "i", "inv"):
+
             # send message about inventory
-            mud.send_message(id, "Weapon: {} Armor: {} Gold: {} " +
-                             "Backpack: {}".format(players["weapon",
-                                                           "armor",
-                                                           "gold",
-                                                           "backpack"]))
+            mud.send_message(id, "Weapon: {}. ".format(
+                             players[id]["weapon"]))
+
+            mud.send_message(id, "Armor: {}. ".format(
+                             players[id]["armor"]))
+
+            mud.send_message(id, "Gold: {}. ".format(
+                             players[id]["gold"]))
+
+            mud.send_message(id, "Backpack: {}. ".format(
+                             players[id]["backpack"]))
 
         # some other, unrecognised command
         else:
