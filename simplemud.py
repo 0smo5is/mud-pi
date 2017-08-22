@@ -95,10 +95,10 @@ while True:
         players[id] = {
             "name": None,
             "room": "Rusty Whistle",
-            "weapon": None,
-            "armor": None,
+            "weapon": "Fist",
+            "armor": "Cloth Clothing",
             "gold": 0,
-            "backpack": None,
+            "backpack": "Empty",
             }
 
         # send the new player a prompt for their name ('\r\n' for telnet)
