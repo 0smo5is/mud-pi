@@ -1,4 +1,4 @@
-Copyright (C) 2013 Mark Frimston
+Copyright (C) 2017 0smo5is
 
 Permission is hereby granted, free of charge, to any person obtaining a copy 
 of this software and associated documentation files (the "Software"), to deal 
