@@ -20,7 +20,6 @@ Some ideas for things to try adding:
 
 author: Mark Frimston - mfrimston@gmail.com
 """
-from termcolor import colored
 import time
 
 # import the MUD server class
