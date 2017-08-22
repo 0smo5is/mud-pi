@@ -22,6 +22,7 @@ author: Mark Frimston - mfrimston@gmail.com
 """
 
 import time
+import logging
 
 # import the MUD server class
 from mudserver import MudServer
@@ -64,6 +65,9 @@ rooms = {
 
 # stores the players in the game
 players = {}
+
+# setup logging to file
+logging.basicConfig(filename="mud.log",level=logging.INFO,format="[%(levelname)s] %(message)s")
 
 # start the server
 mud = MudServer()
@@ -171,6 +175,7 @@ while True:
                     # send them a message telling them what the player said
                     mud.send_message(pid, "{} says: {}".format(
                                      players[id]["name"], params))
+                    logging.info(message)
 
         # 'look' command
         elif command == "look":
