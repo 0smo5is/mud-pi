@@ -271,9 +271,10 @@ while True:
         elif command in ("inventory", "i"):
             # send message about inventory
             mud.send_message(id, "Weapon: {} Armor: {} Gold: {} " +
-                             "Backpack: {}".format(players[id]["weapon"]
-                                                   ["armor"]["gold"]
-                                                   ["backpack"]))
+                             "Backpack: {}".format(players[id]["weapon", 
+                                                               "armor", 
+                                                               "gold", 
+                                                               "backpack"]))
 
         # some other, unrecognised command
         else:
