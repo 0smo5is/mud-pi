@@ -97,7 +97,7 @@ while True:
             "room": "Rusty Whistle",
             "weapon": "Fist",
             "armor": "Cloth Clothing",
-            "gold": 0,
+            "gold": "0",
             "backpack": "Empty",
             }
 
