@@ -164,8 +164,8 @@ while True:
                                  "loud, e.g. 'say Hello'")
             mud.send_message(id, "  look(l)           - Examines the " +
                                  "surroundings, e.g. 'look'")
-            mud.send_message(id, "  go(g) <exit>      - Moves through the exit " +
-                                 "specified, e.g. 'go outside'")
+            mud.send_message(id, "  go(g) <exit>      - Moves through the " +
+                                 "exit specified, e.g. 'go outside'")
             mud.send_message(id, "  equip(e) <item>   - Equips an item ")
             mud.send_message(id, "  inventory(i)      - Check inventory ")
 
@@ -181,8 +181,8 @@ while True:
 
         # 'look' command
         elif command in ("look", "l", "ls"):
-            
-            #stores items in room
+
+            # stores items in room
             it = params.lower()
             # store the player's current room
             rm = rooms[players[id]["room"]]
@@ -270,7 +270,8 @@ while True:
         # inventory command
         elif command in ("inventory", "i"):
             # send message about inventory
-            mud.send_message(id, players[id]["weapon", "armor", "gold", "backpack"] 
+            mud.send_message(id, players[id]["weapon", "armor", "gold", +
+                                             "backpack"])
 
         # some other, unrecognised command
         else:
