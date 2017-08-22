@@ -41,23 +41,23 @@ rooms = {
         "description": "You're in the Rusty Whistle, a cozy tavern " +
         "warmed by an open fire.",
         "exits": {"outside": "Tavern Entrance", "washroom": "Washroom"},
-        "item": {},
+        "items": {},
     },
     "Tavern Entrance": {
         "description": "You're standing outside the Rusty Whistle. " +
         "It's raining.",
         "exits": {"inside": "Rusty Whistle", "alley": "Dark Alley"},
-        "item": {},
+        "items": {},
     },
     "Washroom": {
         "description": "This is the Rusty Whistle's bathroom.",
         "exits": {"tavern": "Rusty Whistle"},
-        "item": {"plunger": "Toilet Plunger"},
+        "items": {"plunger": "Toilet Plunger"},
     },
     "Dark Alley": {
         "description": "A dark alley leading north, beside the Rusty Whistle.",
         "exits": {"entrance": "Tavern Entrance"},
-        "item": {},
+        "items": {},
     },
     "Dimly lit Shop": {
         "description": "Mysterious Goods Vendor",
@@ -256,8 +256,8 @@ while True:
             it = params.lower()
             # store the player's current room
             rm = rooms[players[id]["room"]]
-            if it in rm["item"]:
-                players[id]["weapon"] = rm["item"][it]
+            if it in rm["items"]:
+                players[id]["weapon"] = rm["items"][it]
                 mud.send_message(id, "You have equipped '{}'".format(it))
             else:
                 mud.send_message(id, "Could not find '{}' in '{}'".format(
