@@ -96,6 +96,9 @@ class MudServer(object):
         # immediately without having to wait
         self._listen_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR,
                                        1)
+        # set TCP Keepalive 
+        self._listen_socket.setsockopt(socket.SOL_SOCKET, \
+                                       socket.SO_KEEPALIVE, 1)
 
         # bind the socket to an ip address and port. Port 23 is the standard
         # telnet port which telnet clients will use, however on some platforms
