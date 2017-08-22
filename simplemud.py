@@ -98,6 +98,7 @@ while True:
             "weapon": None,
             "armor": None,
             "gold": 0,
+            "backpack": None,
             }
 
         # send the new player a prompt for their name ('\r\n' for telnet)
@@ -155,20 +156,21 @@ while True:
         # commands to the game!
 
         # 'help' command
-        elif command == "commands":
+        elif command in ("commands", "help"):
 
             # send the player back the list of possible commands
             mud.send_message(id, "Commands:")
-            mud.send_message(id, "  say <message>  - Says something out " +
+            mud.send_message(id, "  say(/) <message>  - Says something out " +
                                  "loud, e.g. 'say Hello'")
-            mud.send_message(id, "  look           - Examines the " +
+            mud.send_message(id, "  look(l)           - Examines the " +
                                  "surroundings, e.g. 'look'")
-            mud.send_message(id, "  go <exit>      - Moves through the exit " +
+            mud.send_message(id, "  go(g) <exit>      - Moves through the exit " +
                                  "specified, e.g. 'go outside'")
-            mud.send_message(id, "  equip <item>   - Equips an item ")
+            mud.send_message(id, "  equip(e) <item>   - Equips an item ")
+            mud.send_message(id, "  inventory(i)      - Check inventory ")
 
         # 'say' command
-        elif command == "say":
+        elif command in ("say", "/"):
             # go through every player in the game
             for pid, pl in players.items():
                 # if they're in the same room as the player
@@ -178,8 +180,10 @@ while True:
                                      players[id]["name"], params))
 
         # 'look' command
-        elif command == "look":
-
+        elif command in ("look", "l", "ls"):
+            
+            #stores items in room
+            it = params.lower()
             # store the player's current room
             rm = rooms[players[id]["room"]]
 
@@ -188,7 +192,7 @@ while True:
 
             if rm["items"] != {}:
                 mud.send_message(id, "There is a {} here.".format(
-                                 rm["items"]))
+                                 rm["items"][it]))
 
             playershere = []
             # go through every player in the game
@@ -207,7 +211,7 @@ while True:
                              ", ".join(rm["exits"])))
 
         # 'go' command
-        elif command == "go":
+        elif command in ("go", "g"):
             # store the exit name
             ex = params.lower()
             # store the player's current room
@@ -251,7 +255,7 @@ while True:
                 mud.send_message(id, "Unknown exit '{}'".format(ex))
 
         # equip command
-        elif command == "equip":
+        elif command in ("equip", "e"):
             # stores items in room
             it = params.lower()
             # store the player's current room
@@ -262,6 +266,11 @@ while True:
             else:
                 mud.send_message(id, "Could not find '{}' in '{}'".format(
                                  it, players[id]["room"]))
+
+        # inventory command
+        elif command in ("inventory", "i"):
+            # send message about inventory
+            mud.send_message(id, players[id]["weapon", "armor", "gold", "backpack"] 
 
         # some other, unrecognised command
         else:
