@@ -271,16 +271,16 @@ while True:
         elif command in ("inventory", "i", "inv"):
 
             # send message about inventory
-            mud.send_message(id, "Weapon: {}. ".format(
+            mud.send_message(id, "Weapon: {} ".format(
                              players[id]["weapon"]))
 
-            mud.send_message(id, "Armor: {}. ".format(
+            mud.send_message(id, "Armor: {} ".format(
                              players[id]["armor"]))
 
-            mud.send_message(id, "Gold: {}. ".format(
+            mud.send_message(id, "Gold: {} ".format(
                              players[id]["gold"]))
 
-            mud.send_message(id, "Backpack: {}. ".format(
+            mud.send_message(id, "Backpack: {} ".format(
                              players[id]["backpack"]))
 
         # some other, unrecognised command
