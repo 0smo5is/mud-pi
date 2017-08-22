@@ -20,7 +20,7 @@ Some ideas for things to try adding:
 
 author: Mark Frimston - mfrimston@gmail.com
 """
-
+from termcolor import colored
 import time
 
 # import the MUD server class
@@ -38,28 +38,34 @@ Items = {
 
 # structure defining the rooms in the game. Try adding more rooms to the game!
 rooms = {
-    "RustyWhistle": {
+    "Rusty Whistle": {
         "description": "You're in the Rusty Whistle, a cozy tavern " +
         "warmed by an open fire.",
         "exits": {"outside": "Tavern Entrance", "washroom": "Washroom"},
         "item": {},
     },
-    "TavernEntrance": {
+    "Tavern Entrance": {
         "description": "You're standing outside the Rusty Whistle. " +
         "It's raining.",
-        "exits": {"inside": "RustyWhistle", "dark alley": "DarkAlley"},
+        "exits": {"inside": "Rusty Whistle", "alley": "Dark Alley"},
         "item": {},
     },
     "Washroom": {
-       "description": "This is the Rusty Whistle's bathroom.",
-       "exits": {"tavern": "RustyWhistle"},
-       "item": {"plunger": "Toilet Plunger"},
+        "description": "This is the Rusty Whistle's bathroom.",
+        "exits": {"tavern": "Rusty Whistle"},
+        "item": {"plunger": "Toilet Plunger"},
     },
-    "DarkAlley": {
-       "description": "A dark alley leading behind the Rusty Whistle.",
-       "exits": {"tavern entrance": "TavernEntrance"},
-       "item": {},
+    "Dark Alley": {
+        "description": "A dark alley leading north, beside the Rusty Whistle.",
+        "exits": {"entrance": "Tavern Entrance"},
+        "item": {},
     },
+    "Dimly lit Shop": {
+        "description": "Mysterious Goods Vendor",
+        "exits": {"ally": "Dark Alley"},
+        "items": {},
+    },
+
 }
 
 # stores the players in the game
@@ -89,14 +95,14 @@ while True:
         # Try adding more player stats - level, gold, inventory, etc
         players[id] = {
             "name": None,
-            "room": "RustyWhistle",
+            "room": "Rusty Whistle",
             "weapon": None,
             "armor": None,
             "gold": 0,
             }
 
-        # send the new player a prompt for their name ('\r\n' should be used for telnet)
-        mud.send_message(id, "Welcome to my untitled MUD!\r\n" + 
+        # send the new player a prompt for their name ('\r\n' for telnet)
+        mud.send_message(id, "Welcome to my untitled MUD!\r\n" +
                          "Forked from Frimkron/mud-pi @ 0smo5is/mud-pi\r\n" +
                          "What is your name?")
 
@@ -180,6 +186,10 @@ while True:
 
             # send the player back the description of their current room
             mud.send_message(id, rm["description"])
+
+            if rm["item"] != "":
+                mud.send_message(id, "There is a {} here.".format(
+                                 rm["items"]))
 
             playershere = []
             # go through every player in the game
