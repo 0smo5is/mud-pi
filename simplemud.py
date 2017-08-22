@@ -26,7 +26,7 @@ import time
 from mudserver import MudServer
 
 # My WIP attempt at adding items
-Items = {
+items = {
     "Toilet Plunger": {
        "description": "An old Toilet Plunger.",
        "damage": "1",
@@ -41,28 +41,28 @@ rooms = {
         "description": "You're in the Rusty Whistle, a cozy tavern " +
         "warmed by an open fire.",
         "exits": {"outside": "Tavern Entrance", "washroom": "Washroom"},
-        "items": {},
+        "loot": None,
     },
     "Tavern Entrance": {
         "description": "You're standing outside the Rusty Whistle. " +
         "It's raining.",
         "exits": {"inside": "Rusty Whistle", "alley": "Dark Alley"},
-        "items": {},
+        "loot": None,
     },
     "Washroom": {
         "description": "This is the Rusty Whistle's bathroom.",
         "exits": {"tavern": "Rusty Whistle"},
-        "items": {"plunger": "Toilet Plunger"},
+        "loot": {"plunger": "Toilet Plunger"},
     },
     "Dark Alley": {
         "description": "A dark alley leading north, beside the Rusty Whistle.",
         "exits": {"entrance": "Tavern Entrance"},
-        "items": {},
+        "loot": None,
     },
     "Dimly lit Shop": {
         "description": "Mysterious Goods Vendor",
         "exits": {"ally": "Dark Alley"},
-        "items": {},
+        "loot": None,
     },
 
 }
@@ -190,9 +190,9 @@ while True:
             # send the player back the description of their current room
             mud.send_message(id, rm["description"])
 
-            if rm["items"] != {}:
+            if rm["loot"] != None:
                 mud.send_message(id, "There is a {} here.".format(
-                                 rm["items"][it]))
+                                 rm["loot"][it]))
 
             playershere = []
             # go through every player in the game
@@ -260,8 +260,8 @@ while True:
             it = params.lower()
             # store the player's current room
             rm = rooms[players[id]["room"]]
-            if it in rm["items"]:
-                players[id]["weapon"] = rm["items"][it]
+            if it in rm["loot"]:
+                players[id]["weapon"] = rm["loot"][it]
                 mud.send_message(id, "You have equipped '{}'".format(it))
             else:
                 mud.send_message(id, "Could not find '{}' in '{}'".format(
