@@ -186,14 +186,14 @@ while True:
             # store the player's current room
             rm = rooms[players[id]["room"]]
             # stores items in room
-            it = rm["loot"]
+            # it = rm["loot"]
 
             # send the player back the description of their current room
             mud.send_message(id, rm["description"])
 
-            if it["loot"] is not None:
+            if rm["loot"] is not None:
                 mud.send_message(id, "There is a {} here.".format(
-                                 it["loot"][lw]))
+                                 rm["loot"][lw]))
 
             playershere = []
             # go through every player in the game
