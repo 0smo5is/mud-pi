@@ -191,7 +191,7 @@ while True:
             # send the player back the description of their current room
             mud.send_message(id, rm["description"])
 
-            if rm["loot"] is not None:
+            if it["loot"] is not None:
                 mud.send_message(id, "There is a {} here.".format(
                                  it["loot"][lw]))
 
