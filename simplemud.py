@@ -41,13 +41,13 @@ rooms = {
         "description": "You're in the Rusty Whistle, a cozy tavern " +
         "warmed by an open fire.",
         "exits": {"outside": "Tavern Entrance", "washroom": "Washroom"},
-        "items": {},
+        "items": {""},
     },
     "Tavern Entrance": {
         "description": "You're standing outside the Rusty Whistle. " +
         "It's raining.",
         "exits": {"inside": "Rusty Whistle", "alley": "Dark Alley"},
-        "items": {},
+        "items": {""},
     },
     "Washroom": {
         "description": "This is the Rusty Whistle's bathroom.",
@@ -57,12 +57,12 @@ rooms = {
     "Dark Alley": {
         "description": "A dark alley leading north, beside the Rusty Whistle.",
         "exits": {"entrance": "Tavern Entrance"},
-        "items": {},
+        "items": {""},
     },
     "Dimly lit Shop": {
         "description": "Mysterious Goods Vendor",
         "exits": {"ally": "Dark Alley"},
-        "items": {},
+        "items": {""},
     },
 
 }
