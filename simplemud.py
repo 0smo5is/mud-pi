@@ -186,7 +186,7 @@ while True:
             # send the player back the description of their current room
             mud.send_message(id, rm["description"])
 
-            if rm["item"] != "":
+            if rm["items"] != "":
                 mud.send_message(id, "There is a {} here.".format(
                                  rm["items"]))
 
