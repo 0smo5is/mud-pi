@@ -182,18 +182,11 @@ while True:
         # 'look' command
         elif command in ("look", "l", "ls"):
 
-            lw = params.lower()
             # store the player's current room
-            rm = rooms[players[id]["room"]]
-            # stores items in room
-            # it = rm["loot"]
+            rm = rooms[players[id]["room"]
 
             # send the player back the description of their current room
             mud.send_message(id, rm["description"])
-
-            if rm["loot"] is not None:
-                mud.send_message(id, "There is a {} here.".format(
-                                 rm["loot"][lw]))
 
             playershere = []
             # go through every player in the game
