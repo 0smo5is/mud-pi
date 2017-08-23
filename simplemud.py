@@ -41,13 +41,13 @@ rooms = {
         "description": "You're in the Rusty Whistle, a cozy tavern " +
         "warmed by an open fire.",
         "exits": {"outside": "Tavern Entrance", "washroom": "Washroom"},
-        "loot": None,
+        "loot": {"none": "None"},
     },
     "Tavern Entrance": {
         "description": "You're standing outside the Rusty Whistle. " +
         "It's raining.",
         "exits": {"inside": "Rusty Whistle", "alley": "Dark Alley"},
-        "loot": None,
+        "loot": {"none": "None"},
     },
     "Washroom": {
         "description": "This is the Rusty Whistle's bathroom.",
@@ -57,12 +57,12 @@ rooms = {
     "Dark Alley": {
         "description": "A dark alley leading north, beside the Rusty Whistle.",
         "exits": {"entrance": "Tavern Entrance"},
-        "loot": None,
+        "loot": {"none": "None"},
     },
     "Dimly lit Shop": {
         "description": "Mysterious Goods Vendor",
         "exits": {"ally": "Dark Alley"},
-        "loot": None,
+        "loot": {"none": "None"},
     },
 
 }
@@ -184,18 +184,21 @@ while True:
         # 'look' command
         elif command in ("look", "l", "ls"):
 
-            lw = params.lower()
+            it = params.lower()
             # store the player's current room
             rm = rooms[players[id]["room"]]
-            # stores items in room
-            # it = rm["loot"]
+            # stores items in roon
 
             # send the player back the description of their current room
             mud.send_message(id, rm["description"])
 
-            if rm["loot"] is not None:
+            if rm["loot"][it] is not "none":
                 mud.send_message(id, "There is a {} here.".format(
-                                 rm["loot"][lw]))
+                                 it))
+
+            # if rm["loot"] is not None:
+                # mud.send_message(id, "There is a {} here.".format(
+                                 # rm["loot"][lw]))
 
             playershere = []
             # go through every player in the game
