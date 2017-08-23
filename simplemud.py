@@ -104,6 +104,8 @@ while True:
         # send the new player a prompt for their name ('\r\n' for telnet)
         mud.send_message(id, "Welcome to my untitled MUD!\r\n" +
                          "Forked from Frimkron/mud-pi @ 0smo5is/mud-pi\r\n" +
+                         "Testing Branch v0.0.1" +
+                         "\r\n" +
                          "What is your name?")
 
     # go through any recently disconnected players
