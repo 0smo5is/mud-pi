@@ -102,9 +102,9 @@ while True:
             }
 
         # send the new player a prompt for their name ('\r\n' for telnet)
-        mud.send_message(id, "Welcome to my untitled MUD!\r\n" +
+        mud.send_message(id, "\r\nWelcome to my untitled MUD!\r\n" +
                          "Forked from Frimkron/mud-pi @ 0smo5is/mud-pi\r\n" +
-                         "Testing Branch v0.0.1" +
+                         "Testing Branch v0.0.1\r\n" +
                          "\r\n" +
                          "What is your name?")
 
@@ -187,14 +187,15 @@ while True:
             it = params.lower()
             # store the player's current room
             rm = rooms[players[id]["room"]]
-            # stores items in roon
 
             # send the player back the description of their current room
             mud.send_message(id, rm["description"])
 
-            if rm["loot"][it] is not "none":
-                mud.send_message(id, "There is a {} here.".format(
-                                 it))
+            # if "loot" in rm[it]
+            
+            # if rm["loot"][it] is not "none":
+                # mud.send_message(id, "There is a {} here.".format(
+                                 # it))
 
             # if rm["loot"] is not None:
                 # mud.send_message(id, "There is a {} here.".format(
