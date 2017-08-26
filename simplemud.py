@@ -190,21 +190,19 @@ while True:
 
             # send the player back the description of their current room
             mud.send_message(id, rm["description"])
-            
-            if ex in rm["loot"]:
-               mud.send_message(id, "There is a {} here".format(rm["loot"]))
 
-           
-         
+            if ex in rm["loot"]:
+                mud.send_message(id, "There is a {} here".format(rm["loot"]))
+
             # if "loot" in rm[it]
-            
+
             # if rm["loot"][it] is not "none":
-                # mud.send_message(id, "There is a {} here.".format(
-                                 # it))
+            # mud.send_message(id, "There is a {} here.".format(
+            # it))
 
             # if rm["loot"] is not None:
-                # mud.send_message(id, "There is a {} here.".format(
-                                 # rm["loot"][lw]))
+            # mud.send_message(id, "There is a {} here.".format(
+            # rm["loot"][lw]))
 
             playershere = []
             # go through every player in the game
